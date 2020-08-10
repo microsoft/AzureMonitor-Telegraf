@@ -2,6 +2,7 @@
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 PROJDIR="$(dirname "$DIR")"
+cd "$PROJDIR"
 
 if [ -d "$PROJDIR/build" ]; then
   rm -rf $PROJDIR/build
