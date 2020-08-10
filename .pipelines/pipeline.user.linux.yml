@@ -11,7 +11,7 @@ static_analysis_options:
   elfskim_options:
     files_to_scan:
       - exclude:
-          - '**/build/**/*'
+        - '**/*.*'
 
 version:
   name: 'Controlled by Makefile'
