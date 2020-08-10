@@ -86,10 +86,6 @@ help:
 	@echo 'Package Targets:'
 	@$(foreach dist,$(dists),echo "  $(dist)";)
 
-.PHONY: deps
-deps:
-	go mod download
-
 .PHONY: telegraf
 telegraf:
 	go build -ldflags "$(LDFLAGS)" ./cmd/telegraf

@@ -1,0 +1,38 @@
+environment:
+  host:
+    os: 'linux'
+    flavor: 'ubuntu'
+    version: '18.04'
+  runtime:
+    provider: 'appcontainer'
+    image: 'cdpxlinux.azurecr.io/user/azure-monitor/wli:telegraf'
+
+static_analysis_options:
+  elfskim_options:
+    files_to_scan:
+      - exclude:
+          - '**/build/**/*'
+
+version:
+  name: 'Controlled by Makefile'
+  major: 1
+  minor: 0
+  system: 'patch'
+
+restore:
+  commands:
+    - !!defaultcommand
+      name: 'Download go mod packages'
+      command: '.pipelines/restore.sh'
+
+build:
+  commands:
+    - !!buildcommand
+      name: 'Make telegraf packages'
+      fail_on_stderr: false
+      command: '.pipelines/build.sh'
+      artifacts:
+        - from: 'build'
+          to: 'Telegraf'
+          include:
+            - '**\*'
