@@ -36,3 +36,5 @@ build:
           to: 'Telegraf'
           include:
             - '**\*'
+          signing_options:
+            sign_inline: true
