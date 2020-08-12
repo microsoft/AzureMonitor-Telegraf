@@ -7,9 +7,6 @@ environment:
     provider: 'appcontainer'
     image: 'cdpxlinux.azurecr.io/user/azure-monitor/wli:telegraf'
 
-signing_options:
-  profile: 'external_distribution'
-
 static_analysis_options:
   elfskim_options:
     files_to_scan:
@@ -40,5 +37,3 @@ build:
           include:
             - 'dist/*.deb'
             - 'dist/*.rpm'
-          signing_options:
-            sign_inline: true
