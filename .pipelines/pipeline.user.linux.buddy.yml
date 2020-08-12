@@ -39,5 +39,6 @@ build:
           to: 'Telegraf'
           include:
             - 'dist/*.deb'
+            - 'dist/*.rpm'
           signing_options:
             sign_inline: true
