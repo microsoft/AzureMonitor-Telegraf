@@ -18,6 +18,12 @@ static_analysis_options:
         exclude:
           - '*'
 
+version:
+  name: 'Controlled by Makefile'
+  major: 1
+  minor: 0
+  system: 'patch'
+
 signing_options: 
     profile: 'internal_azure_service'
 
