@@ -31,7 +31,7 @@ build:
   commands:
     - !!buildcommand
       name: 'Copy Artifacts'
-      command: 'copy.cmd'
+      command: '.pipelines/copy.cmd'
       artifacts:
         - from: 'cdpx-artifacts'
           include:
