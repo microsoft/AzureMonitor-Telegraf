@@ -8,9 +8,6 @@ environment:
     image: 'cdpxwin1809.azurecr.io/global/vse2019:latest'
     source_mode: 'map'
 
-workspace_options:                         # Metadata section
-  download_current_artifacts: true         # Default is always false
-
 static_analysis_options:
   binskim_options:
     files_to_scan:
@@ -25,14 +22,15 @@ version:
   system: 'patch'
 
 signing_options: 
-    profile: 'internal_azure_service'
+    profile: 'azure'
 
 build:
   commands:
     - !!buildcommand
-      name: 'Copy Artifacts'
-      command: '.pipelines/copy.cmd'
+      name: 'Signing'
+      command: '.pipelines/gci.cmd'
       artifacts:
-        - from: 'cdpx-artifacts'
+        - from: 'artifacts/linux-phase'
+          to: 'signed'
           include:
-          - '**'
+          - '**\*'
