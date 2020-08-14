@@ -6,20 +6,7 @@ environment:
   runtime:
     provider: 'appcontainer'
     image: 'cdpxwin1809.azurecr.io/global/vse2019:latest'
-    source_mode: 'map'
-
-static_analysis_options:
-  binskim_options:
-    files_to_scan:
-      - from: 'cdpx-artifacts'
-        exclude:
-          - '*'
-
-version:
-  name: 'Controlled by Makefile'
-  major: 1
-  minor: 0
-  system: 'patch'
+    source_mode: 'link'
 
 signing_options: 
     profile: 'azure'
@@ -33,4 +20,5 @@ build:
         - from: 'artifacts/linux-phase'
           to: 'signed'
           include:
-          - '**\*'
+          - '**\*.deb'
+          - '**\*.rpm'
