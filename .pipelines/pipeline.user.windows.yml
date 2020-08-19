@@ -15,7 +15,7 @@ version:
   system: 'patch'
 
 signing_options: 
-    profile: 'external_distribution'
+    profile: 'azure'
 
 build:
   commands:
