@@ -110,7 +110,7 @@ var multiMetric = testCase{
 
 func TestNewCollectdParser(t *testing.T) {
 	parser, err := NewCollectdParser("", "", []string{}, "join")
-	require.NoError(t, err)
+	require.Nil(t, err)
 	require.Equal(t, parser.popts.SecurityLevel, network.None)
 	require.NotNil(t, parser.popts.PasswordLookup)
 	require.Nil(t, parser.popts.TypesDB)
@@ -121,14 +121,14 @@ func TestParse(t *testing.T) {
 
 	for _, tc := range cases {
 		buf, err := writeValueList(tc.vl)
-		require.NoError(t, err)
+		require.Nil(t, err)
 		bytes, err := buf.Bytes()
-		require.NoError(t, err)
+		require.Nil(t, err)
 
 		parser := &CollectdParser{}
-		require.NoError(t, err)
+		require.Nil(t, err)
 		metrics, err := parser.Parse(bytes)
-		require.NoError(t, err)
+		require.Nil(t, err)
 
 		assertEqualMetrics(t, tc.expected, metrics)
 	}
@@ -136,30 +136,30 @@ func TestParse(t *testing.T) {
 
 func TestParseMultiValueSplit(t *testing.T) {
 	buf, err := writeValueList(multiMetric.vl)
-	require.NoError(t, err)
+	require.Nil(t, err)
 	bytes, err := buf.Bytes()
-	require.NoError(t, err)
+	require.Nil(t, err)
 
 	parser := &CollectdParser{ParseMultiValue: "split"}
 	metrics, err := parser.Parse(bytes)
-	require.NoError(t, err)
+	require.Nil(t, err)
 
 	assert.Equal(t, 2, len(metrics))
 }
 
 func TestParse_DefaultTags(t *testing.T) {
 	buf, err := writeValueList(singleMetric.vl)
-	require.NoError(t, err)
+	require.Nil(t, err)
 	bytes, err := buf.Bytes()
-	require.NoError(t, err)
+	require.Nil(t, err)
 
 	parser := &CollectdParser{}
 	parser.SetDefaultTags(map[string]string{
 		"foo": "bar",
 	})
-	require.NoError(t, err)
+	require.Nil(t, err)
 	metrics, err := parser.Parse(bytes)
-	require.NoError(t, err)
+	require.Nil(t, err)
 
 	require.Equal(t, "bar", metrics[0].Tags()["foo"])
 }
@@ -178,45 +178,45 @@ func TestParse_SignSecurityLevel(t *testing.T) {
 
 	// Signed data
 	buf, err := writeValueList(singleMetric.vl)
-	require.NoError(t, err)
+	require.Nil(t, err)
 	buf.Sign("user0", "bar")
 	bytes, err := buf.Bytes()
-	require.NoError(t, err)
+	require.Nil(t, err)
 
 	metrics, err := parser.Parse(bytes)
-	require.NoError(t, err)
+	require.Nil(t, err)
 	assertEqualMetrics(t, singleMetric.expected, metrics)
 
 	// Encrypted data
 	buf, err = writeValueList(singleMetric.vl)
-	require.NoError(t, err)
+	require.Nil(t, err)
 	buf.Encrypt("user0", "bar")
 	bytes, err = buf.Bytes()
-	require.NoError(t, err)
+	require.Nil(t, err)
 
 	metrics, err = parser.Parse(bytes)
-	require.NoError(t, err)
+	require.Nil(t, err)
 	assertEqualMetrics(t, singleMetric.expected, metrics)
 
 	// Plain text data skipped
 	buf, err = writeValueList(singleMetric.vl)
-	require.NoError(t, err)
+	require.Nil(t, err)
 	bytes, err = buf.Bytes()
-	require.NoError(t, err)
+	require.Nil(t, err)
 
 	metrics, err = parser.Parse(bytes)
-	require.NoError(t, err)
+	require.Nil(t, err)
 	require.Equal(t, []telegraf.Metric{}, metrics)
 
 	// Wrong password error
 	buf, err = writeValueList(singleMetric.vl)
-	require.NoError(t, err)
+	require.Nil(t, err)
 	buf.Sign("x", "y")
 	bytes, err = buf.Bytes()
-	require.NoError(t, err)
+	require.Nil(t, err)
 
 	metrics, err = parser.Parse(bytes)
-	require.Error(t, err)
+	require.NotNil(t, err)
 }
 
 func TestParse_EncryptSecurityLevel(t *testing.T) {
@@ -233,57 +233,57 @@ func TestParse_EncryptSecurityLevel(t *testing.T) {
 
 	// Signed data skipped
 	buf, err := writeValueList(singleMetric.vl)
-	require.NoError(t, err)
+	require.Nil(t, err)
 	buf.Sign("user0", "bar")
 	bytes, err := buf.Bytes()
-	require.NoError(t, err)
+	require.Nil(t, err)
 
 	metrics, err := parser.Parse(bytes)
-	require.NoError(t, err)
+	require.Nil(t, err)
 	require.Equal(t, []telegraf.Metric{}, metrics)
 
 	// Encrypted data
 	buf, err = writeValueList(singleMetric.vl)
-	require.NoError(t, err)
+	require.Nil(t, err)
 	buf.Encrypt("user0", "bar")
 	bytes, err = buf.Bytes()
-	require.NoError(t, err)
+	require.Nil(t, err)
 
 	metrics, err = parser.Parse(bytes)
-	require.NoError(t, err)
+	require.Nil(t, err)
 	assertEqualMetrics(t, singleMetric.expected, metrics)
 
 	// Plain text data skipped
 	buf, err = writeValueList(singleMetric.vl)
-	require.NoError(t, err)
+	require.Nil(t, err)
 	bytes, err = buf.Bytes()
-	require.NoError(t, err)
+	require.Nil(t, err)
 
 	metrics, err = parser.Parse(bytes)
-	require.NoError(t, err)
+	require.Nil(t, err)
 	require.Equal(t, []telegraf.Metric{}, metrics)
 
 	// Wrong password error
 	buf, err = writeValueList(singleMetric.vl)
-	require.NoError(t, err)
+	require.Nil(t, err)
 	buf.Sign("x", "y")
 	bytes, err = buf.Bytes()
-	require.NoError(t, err)
+	require.Nil(t, err)
 
 	metrics, err = parser.Parse(bytes)
-	require.Error(t, err)
+	require.NotNil(t, err)
 }
 
 func TestParseLine(t *testing.T) {
 	buf, err := writeValueList(singleMetric.vl)
-	require.NoError(t, err)
+	require.Nil(t, err)
 	bytes, err := buf.Bytes()
-	require.NoError(t, err)
+	require.Nil(t, err)
 
 	parser, err := NewCollectdParser("", "", []string{}, "split")
-	require.NoError(t, err)
+	require.Nil(t, err)
 	metric, err := parser.ParseLine(string(bytes))
-	require.NoError(t, err)
+	require.Nil(t, err)
 
 	assertEqualMetrics(t, singleMetric.expected, []telegraf.Metric{metric})
 }
