@@ -68,6 +68,7 @@ View the current scores with a command, substituting your player name:
 
 Get the number of jumps per player in the last hour:
 ```
+```sql
 SELECT SPREAD("jumps") FROM "minecraft" WHERE time > now() - 1h GROUP BY "player"
 ```
 

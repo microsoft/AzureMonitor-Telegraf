@@ -78,6 +78,7 @@ These are some useful queries (to generate dashboards or other) to run against d
 plugin:
 
 ```
+```sql
 SELECT non_negative_derivative(mean(/^A$|^PTR$/), 5m) FROM bind_counter \
 WHERE "url" = 'localhost:8053' AND "type" = 'qtype' AND time > now() - 1h \
 GROUP BY time(5m), "type"

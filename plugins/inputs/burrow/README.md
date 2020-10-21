@@ -1,4 +1,5 @@
 # Telegraf Plugin: Burrow
+# Burrow Kafka Consumer Lag Checking Input Plugin
 
 Collect Kafka topic, consumer and partition status
 via [Burrow](https://github.com/linkedin/Burrow) HTTP [API](https://github.com/linkedin/Burrow/wiki/HTTP-Endpoint).
@@ -8,6 +9,7 @@ Supported Burrow version: `1.x`
 ### Configuration
 
 ```
+```toml
 [[inputs.burrow]]
   ## Burrow API endpoints in format "schema://host:port".
   ## Default is "http://localhost:8000".

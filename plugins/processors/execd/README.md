@@ -104,6 +104,7 @@ to run it, you'd build the binary using go, eg `go build -o multiplier.exe main.
 ```
 
 #### Ruby daemon using SIGHUP
+#### Ruby daemon
 
 - See [Ruby daemon](./examples/multiplier_line_protocol/multiplier_line_protocol.rb)
 

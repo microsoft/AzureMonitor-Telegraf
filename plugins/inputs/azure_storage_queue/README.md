@@ -1,4 +1,5 @@
 # Telegraf Input Plugin: Azure Storage Queue
+# Azure Storage Queue Input Plugin
 
 This plugin gathers sizes of Azure Storage Queues.
 

@@ -1,4 +1,5 @@
 # Kube_Inventory Plugin
+# Kubernetes Inventory Input Plugin
 
 This plugin generates metrics derived from the state of the following Kubernetes resources:
 

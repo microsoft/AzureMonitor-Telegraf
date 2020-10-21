@@ -49,6 +49,7 @@ execd plugins:
   look something like:
 
 ```
+```toml
 [[inputs.execd]]
   command = ["/path/to/rand", "-config", "/path/to/plugin.conf"]
   signal = "none"

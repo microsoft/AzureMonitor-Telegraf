@@ -1,4 +1,5 @@
 # Riak Plugin
+# Riak Input Plugin
 
 The Riak plugin gathers metrics from one or more riak instances.
 

@@ -1,4 +1,5 @@
 ## Zookeeper Input Plugin
+# Zookeeper Input Plugin
 
 The zookeeper plugin collects variables outputted from the 'mntr' command
 [Zookeeper Admin](https://zookeeper.apache.org/doc/current/zookeeperAdmin.html).

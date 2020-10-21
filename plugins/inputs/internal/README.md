@@ -1,4 +1,5 @@
 # Internal Input Plugin
+# Telegraf Internal Input Plugin
 
 The `internal` plugin collects metrics about the telegraf agent itself.
 

@@ -1,4 +1,5 @@
 # Telegraf Service Plugin: statsd
+# StatsD Input Plugin
 
 ### Configuration
 

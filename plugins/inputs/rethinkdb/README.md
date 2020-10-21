@@ -1,4 +1,5 @@
 # RethinkDB Input
+# RethinkDB Input Plugin
 
 Collect metrics from [RethinkDB](https://www.rethinkdb.com/).
 

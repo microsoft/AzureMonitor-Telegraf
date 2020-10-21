@@ -10,6 +10,7 @@ import (
 	_ "github.com/influxdata/telegraf/plugins/outputs/cratedb"
 	_ "github.com/influxdata/telegraf/plugins/outputs/datadog"
 	_ "github.com/influxdata/telegraf/plugins/outputs/discard"
+	_ "github.com/influxdata/telegraf/plugins/outputs/dynatrace"
 	_ "github.com/influxdata/telegraf/plugins/outputs/elasticsearch"
 	_ "github.com/influxdata/telegraf/plugins/outputs/exec"
 	_ "github.com/influxdata/telegraf/plugins/outputs/execd"
@@ -35,6 +36,9 @@ import (
 	_ "github.com/influxdata/telegraf/plugins/outputs/socket_writer"
 	_ "github.com/influxdata/telegraf/plugins/outputs/stackdriver"
 	_ "github.com/influxdata/telegraf/plugins/outputs/syslog"
+	_ "github.com/influxdata/telegraf/plugins/outputs/sumologic"
+	_ "github.com/influxdata/telegraf/plugins/outputs/syslog"
+	_ "github.com/influxdata/telegraf/plugins/outputs/timestream"
 	_ "github.com/influxdata/telegraf/plugins/outputs/warp10"
 	_ "github.com/influxdata/telegraf/plugins/outputs/wavefront"
 )

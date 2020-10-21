@@ -14,6 +14,8 @@ For more information see the [Code of Conduct FAQ](https://opensource.microsoft.
 contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
 
 # Telegraf [![Circle CI](https://circleci.com/gh/influxdata/telegraf.svg?style=svg)](https://circleci.com/gh/influxdata/telegraf) [![Docker pulls](https://img.shields.io/docker/pulls/library/telegraf.svg)](https://hub.docker.com/_/telegraf/)
+# Telegraf [![Circle CI](https://circleci.com/gh/influxdata/telegraf.svg?style=svg)](https://circleci.com/gh/influxdata/telegraf) [![Docker pulls](https://img.shields.io/docker/pulls/library/telegraf.svg)](https://hub.docker.com/_/telegraf/)
+[![Slack Status](https://img.shields.io/badge/slack-join_chat-white.svg?logo=slack&style=social)](https://www.influxdata.com/slack)
 
 Telegraf is an agent for collecting, processing, aggregating, and writing metrics.
 
@@ -69,6 +71,7 @@ Ansible role: https://github.com/rossmcdonald/telegraf
 Telegraf requires Go version 1.13 or newer, the Makefile requires GNU make.
 
 1. [Install Go](https://golang.org/doc/install) >=1.13 (1.14 recommended)
+1. [Install Go](https://golang.org/doc/install) >=1.13 (1.15 recommended)
 2. Clone the Telegraf repository:
    ```
    cd ~/src
@@ -225,6 +228,8 @@ For documentation on the latest development code see the [documentation index][d
 * [infiniband](./plugins/inputs/infiniband)
 * [influxdb](./plugins/inputs/influxdb)
 * [influxdb_listener](./plugins/inputs/influxdb_listener)
+* [influxdb_v2_listener](./plugins/inputs/influxdb_v2_listener)
+* [intel_rdt](./plugins/inputs/intel_rdt)
 * [internal](./plugins/inputs/internal)
 * [interrupts](./plugins/inputs/interrupts)
 * [ipmi_sensor](./plugins/inputs/ipmi_sensor)
@@ -274,11 +279,13 @@ For documentation on the latest development code see the [documentation index][d
 * [nginx_sts](./plugins/inputs/nginx_sts)
 * [nginx_upstream_check](./plugins/inputs/nginx_upstream_check)
 * [nginx_vts](./plugins/inputs/nginx_vts)
+* [nsd](./plugins/inputs/nsd)
 * [nsq_consumer](./plugins/inputs/nsq_consumer)
 * [nsq](./plugins/inputs/nsq)
 * [nstat](./plugins/inputs/nstat)
 * [ntpq](./plugins/inputs/ntpq)
 * [nvidia_smi](./plugins/inputs/nvidia_smi)
+* [opcua](./plugins/inputs/opcua)
 * [openldap](./plugins/inputs/openldap)
 * [openntpd](./plugins/inputs/openntpd)
 * [opensmtpd](./plugins/inputs/opensmtpd)
@@ -299,6 +306,11 @@ For documentation on the latest development code see the [documentation index][d
 * [puppetagent](./plugins/inputs/puppetagent)
 * [rabbitmq](./plugins/inputs/rabbitmq)
 * [raindrops](./plugins/inputs/raindrops)
+* [proxmox](./plugins/inputs/proxmox)
+* [puppetagent](./plugins/inputs/puppetagent)
+* [rabbitmq](./plugins/inputs/rabbitmq)
+* [raindrops](./plugins/inputs/raindrops)
+* [ras](./plugins/inputs/ras)
 * [redfish](./plugins/inputs/redfish)
 * [redis](./plugins/inputs/redis)
 * [rethinkdb](./plugins/inputs/rethinkdb)
@@ -341,6 +353,7 @@ For documentation on the latest development code see the [documentation index][d
   * [papertrail](./plugins/inputs/webhooks/papertrail)
   * [particle](./plugins/inputs/webhooks/particle)
   * [rollbar](./plugins/inputs/webhooks/rollbar)
+* [win_eventlog](./plugins/inputs/win_eventlog)
 * [win_perf_counters](./plugins/inputs/win_perf_counters) (windows performance counters)
 * [win_services](./plugins/inputs/win_services)
 * [wireguard](./plugins/inputs/wireguard)
@@ -425,6 +438,7 @@ For documentation on the latest development code see the [documentation index][d
 * [cratedb](./plugins/outputs/cratedb)
 * [datadog](./plugins/outputs/datadog)
 * [discard](./plugins/outputs/discard)
+* [dynatrace](./plugins/outputs/dynatrace)
 * [elasticsearch](./plugins/outputs/elasticsearch)
 * [exec](./plugins/outputs/exec)
 * [execd](./plugins/outputs/execd)
@@ -451,3 +465,4 @@ For documentation on the latest development code see the [documentation index][d
 * [udp](./plugins/outputs/socket_writer)
 * [warp10](./plugins/outputs/warp10)
 * [wavefront](./plugins/outputs/wavefront)
+* [sumologic](./plugins/outputs/sumologic)

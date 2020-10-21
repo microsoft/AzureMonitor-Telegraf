@@ -1,4 +1,5 @@
 # influxdb plugin
+# InfluxDB Input Plugin
 
 The InfluxDB plugin will collect metrics on the given InfluxDB servers.
 

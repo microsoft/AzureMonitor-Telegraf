@@ -1,4 +1,5 @@
 # win_perf_counters readme
+# Windows Performance Counters Input Plugin
 
 This document presents the input plugin to read Performance Counters on Windows operating systems.
 
@@ -174,6 +175,7 @@ if any of the combinations of ObjectName/Instances/Counters are invalid.
 
 ### Generic Queries
 ```
+```toml
 [[inputs.win_perf_counters]]
   [[inputs.win_perf_counters.object]]
     # Processor usage, alternative to native, reports on a per core.
@@ -218,6 +220,7 @@ if any of the combinations of ObjectName/Instances/Counters are invalid.
 
 ### Active Directory Domain Controller
 ```
+```toml
 [[inputs.win_perf_counters]]
   [inputs.win_perf_counters.tags]
     monitorgroup = "ActiveDirectory"
@@ -246,6 +249,7 @@ if any of the combinations of ObjectName/Instances/Counters are invalid.
 
 ### DFS Namespace + Domain Controllers
 ```
+```toml
 [[inputs.win_perf_counters]]
   [[inputs.win_perf_counters.object]]
     # AD, DFS N, Useful if the server hosts a DFS Namespace or is a Domain Controller
@@ -259,6 +263,7 @@ if any of the combinations of ObjectName/Instances/Counters are invalid.
 
 ### DFS Replication + Domain Controllers
 ```
+```toml
 [[inputs.win_perf_counters]]
   [[inputs.win_perf_counters.object]]
     # AD, DFS R, Useful if the server hosts a DFS Replication folder or is a Domain Controller
@@ -272,6 +277,7 @@ if any of the combinations of ObjectName/Instances/Counters are invalid.
 
 ### DNS Server + Domain Controllers
 ```
+```toml
 [[inputs.win_perf_counters]]
   [[inputs.win_perf_counters.object]]
     ObjectName = "DNS"
@@ -283,6 +289,7 @@ if any of the combinations of ObjectName/Instances/Counters are invalid.
 
 ### IIS / ASP.NET
 ```
+```toml
 [[inputs.win_perf_counters]]
   [[inputs.win_perf_counters.object]]
     # HTTP Service request queues in the Kernel before being handed over to User Mode.
@@ -327,6 +334,7 @@ if any of the combinations of ObjectName/Instances/Counters are invalid.
 
 ### Process
 ```
+```toml
 [[inputs.win_perf_counters]]
   [[inputs.win_perf_counters.object]]
     # Process metrics, in this case for IIS only
@@ -339,6 +347,7 @@ if any of the combinations of ObjectName/Instances/Counters are invalid.
 
 ### .NET Monitoring
 ```
+```toml
 [[inputs.win_perf_counters]]
   [[inputs.win_perf_counters.object]]
     # .NET CLR Exceptions, in this case for IIS only

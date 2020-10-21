@@ -1,4 +1,5 @@
 # PF Plugin
+# PF Input Plugin
 
 The pf plugin gathers information from the FreeBSD/OpenBSD pf firewall. Currently it can retrieve information about the state table: the number of current entries in the table, and counters for the number of searches, inserts, and removals to the table.
 
