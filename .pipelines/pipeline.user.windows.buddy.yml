@@ -1,0 +1,30 @@
+environment:
+  host:
+    os: 'windows'
+    flavor: 'server'
+    version: '2019'
+  runtime:
+    provider: 'appcontainer'
+    image: 'cdpxwin1809.azurecr.io/global/vse2019:latest'
+    source_mode: 'link'
+
+version:
+  name: 'Controlled by Makefile'
+  major: 1
+  minor: 0
+  system: 'patch'
+
+signing_options: 
+    profile: 'azure'
+
+build:
+  commands:
+    - !!buildcommand
+      name: 'Signing'
+      command: '.pipelines/gci.cmd'
+      artifacts:
+        - from: 'artifacts/linux-phase'
+          to: 'signed'
+          include:
+          - '**\*.deb'
+          - '**\*.rpm'
