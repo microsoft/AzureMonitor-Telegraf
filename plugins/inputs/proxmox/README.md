@@ -13,6 +13,8 @@ Telegraf minimum version: Telegraf 1.16.0
   api_token = "USER@REALM!TOKENID=UUID"
   ## Optional node name config
   # node_name = "localhost"
+  ## Node name, defaults to OS hostname
+  # node_name = ""
 
   ## Optional TLS Config
   # tls_ca = "/etc/telegraf/ca.pem"

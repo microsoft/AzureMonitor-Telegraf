@@ -5,6 +5,8 @@ metric fields.
 
 **NOTE:** All JSON numbers are converted to float fields.  JSON String are
 ignored unless specified in the `tag_key` or `json_string_fields` options.
+**NOTE:** All JSON numbers are converted to float fields.  JSON strings and booleans are
+ignored unless specified in the `tag_key` or `json_string_fields` options. 
 
 ### Configuration
 
@@ -37,6 +39,15 @@ ignored unless specified in the `tag_key` or `json_string_fields` options.
   ]
 
   ## Array of glob pattern strings keys that should be added as string fields.
+  ## are no longer saved as fields. Supports wildcard glob matching.
+  tag_keys = [
+    "my_tag_1",
+    "my_tag_2",
+    "tags_*",
+    "tag*"
+  ]
+
+  ## Array of glob pattern strings or booleans keys that should be added as string fields.
   json_string_fields = []
 
   ## Name key is the key to use as the measurement name.
