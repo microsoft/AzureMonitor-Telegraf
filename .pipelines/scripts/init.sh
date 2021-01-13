@@ -26,7 +26,7 @@ TELEGRAF_OPTS=
 
 USER=telegraf
 GROUP=telegraf
-MS_TELEGRAF='ms-telegraf'
+MS_TELEGRAF=ms-telegraf
 
 if [ -r /lib/lsb/init-functions ]; then
     source /lib/lsb/init-functions
@@ -103,7 +103,7 @@ name=$MS_TELEGRAF
 daemon=/usr/bin/$MS_TELEGRAF
 
 # pid file for the daemon
-pidfile=/var/run/$MS_TELEGRAF/telegraf.pid
+pidfile=/var/run/$MS_TELEGRAF/$MS_TELEGRAF.pid
 piddir=`dirname $pidfile`
 
 if [ ! -d "$piddir" ]; then

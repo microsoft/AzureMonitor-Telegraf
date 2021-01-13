@@ -11,6 +11,7 @@ ExecReload=/bin/kill -HUP $MAINPID
 Restart=on-failure
 RestartForceExitStatus=SIGPIPE
 KillMode=control-group
+LimitNOFILE=30000
 
 [Install]
 WantedBy=multi-user.target

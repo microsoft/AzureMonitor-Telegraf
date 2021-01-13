@@ -4,35 +4,31 @@ branch := $(shell git rev-parse --abbrev-ref HEAD)
 commit := $(shell git rev-parse --short=8 HEAD)
 glibc_version := 2.17
 ms_telegraf := ms-telegraf
+version := $(next_version)
 
 ifdef NIGHTLY
-	version := $(next_version)
 	rpm_version := nightly
 	rpm_iteration := 0
 	deb_version := nightly
 	deb_iteration := 0
 	tar_version := nightly
 else ifeq ($(tag),)
-	version := $(next_version)
-	rpm_version := $(version)~$(commit)-0
+	rpm_version := $(version)
 	rpm_iteration := 0
-	deb_version := $(version)~$(commit)-0
+	deb_version := $(version)
 	deb_iteration := 0
 	tar_version := $(version)~$(commit)
 else ifneq ($(findstring -rc,$(tag)),)
-	version := $(word 1,$(subst -, ,$(tag)))
-	version := $(version:v%=%)
 	rc := $(word 2,$(subst -, ,$(tag)))
-	rpm_version := $(version)-0.$(rc)
+	rpm_version := $(version)
 	rpm_iteration := 0.$(subst rc,,$(rc))
-	deb_version := $(version)~$(rc)-1
+	deb_version := $(version)
 	deb_iteration := 0
 	tar_version := $(version)~$(rc)
 else
-	version := $(tag:v%=%)
-	rpm_version := $(version)-1
+	rpm_version := $(version)
 	rpm_iteration := 1
-	deb_version := $(version)-1
+	deb_version := $(version)
 	deb_iteration := 1
 	tar_version := $(version)
 endif
@@ -201,39 +197,39 @@ $(buildbin):
 	go build -o $(dir $@) -ldflags "$(LDFLAGS)" ./cmd/telegraf
 
 debs := $(ms_telegraf)-$(deb_version)_amd64.deb
-debs += $(ms_telegraf)-$(deb_version)_arm64.deb
-debs += $(ms_telegraf)-$(deb_version)_armel.deb
-debs += $(ms_telegraf)-$(deb_version)_armhf.deb
-debs += $(ms_telegraf)-$(deb_version)_i386.deb
-debs += $(ms_telegraf)-$(deb_version)_mips.deb
-debs += $(ms_telegraf)-$(deb_version)_mipsel.deb
-debs += $(ms_telegraf)-$(deb_version)_s390x.deb
-debs += $(ms_telegraf)-$(deb_version)_ppc64el.deb
+# debs += $(ms_telegraf)-$(deb_version)_arm64.deb
+# debs += $(ms_telegraf)-$(deb_version)_armel.deb
+# debs += $(ms_telegraf)-$(deb_version)_armhf.deb
+# debs += $(ms_telegraf)-$(deb_version)_i386.deb
+# debs += $(ms_telegraf)-$(deb_version)_mips.deb
+# debs += $(ms_telegraf)-$(deb_version)_mipsel.deb
+# debs += $(ms_telegraf)-$(deb_version)_s390x.deb
+# debs += $(ms_telegraf)-$(deb_version)_ppc64el.deb
 
-rpms += $(ms_telegraf)-$(rpm_version).aarch64.rpm
-rpms += $(ms_telegraf)-$(rpm_version).armel.rpm
-rpms += $(ms_telegraf)-$(rpm_version).armv6hl.rpm
-rpms += $(ms_telegraf)-$(rpm_version).i386.rpm
-rpms += $(ms_telegraf)-$(rpm_version).s390x.rpm
-rpms += $(ms_telegraf)-$(rpm_version).ppc64le.rpm
+# rpms += $(ms_telegraf)-$(rpm_version).aarch64.rpm
+# rpms += $(ms_telegraf)-$(rpm_version).armel.rpm
+# rpms += $(ms_telegraf)-$(rpm_version).armv6hl.rpm
+# rpms += $(ms_telegraf)-$(rpm_version).i386.rpm
+# rpms += $(ms_telegraf)-$(rpm_version).s390x.rpm
+# rpms += $(ms_telegraf)-$(rpm_version).ppc64le.rpm
 rpms += $(ms_telegraf)-$(rpm_version).x86_64.rpm
 
-tars += $(ms_telegraf)-$(tar_version)_darwin_amd64.tar.gz
-tars += $(ms_telegraf)-$(tar_version)_freebsd_amd64.tar.gz
-tars += $(ms_telegraf)-$(tar_version)_freebsd_i386.tar.gz
-tars += $(ms_telegraf)-$(tar_version)_linux_amd64.tar.gz
-tars += $(ms_telegraf)-$(tar_version)_linux_arm64.tar.gz
-tars += $(ms_telegraf)-$(tar_version)_linux_armel.tar.gz
-tars += $(ms_telegraf)-$(tar_version)_linux_armhf.tar.gz
-tars += $(ms_telegraf)-$(tar_version)_linux_i386.tar.gz
-tars += $(ms_telegraf)-$(tar_version)_linux_mips.tar.gz
-tars += $(ms_telegraf)-$(tar_version)_linux_mipsel.tar.gz
-tars += $(ms_telegraf)-$(tar_version)_linux_s390x.tar.gz
-tars += $(ms_telegraf)-$(tar_version)_linux_ppc64le.tar.gz
-tars += $(ms_telegraf)-$(tar_version)_static_linux_amd64.tar.gz
+# tars += $(ms_telegraf)-$(tar_version)_darwin_amd64.tar.gz
+# tars += $(ms_telegraf)-$(tar_version)_freebsd_amd64.tar.gz
+# tars += $(ms_telegraf)-$(tar_version)_freebsd_i386.tar.gz
+# tars += $(ms_telegraf)-$(tar_version)_linux_amd64.tar.gz
+# tars += $(ms_telegraf)-$(tar_version)_linux_arm64.tar.gz
+# tars += $(ms_telegraf)-$(tar_version)_linux_armel.tar.gz
+# tars += $(ms_telegraf)-$(tar_version)_linux_armhf.tar.gz
+# tars += $(ms_telegraf)-$(tar_version)_linux_i386.tar.gz
+# tars += $(ms_telegraf)-$(tar_version)_linux_mips.tar.gz
+# tars += $(ms_telegraf)-$(tar_version)_linux_mipsel.tar.gz
+# tars += $(ms_telegraf)-$(tar_version)_linux_s390x.tar.gz
+# tars += $(ms_telegraf)-$(tar_version)_linux_ppc64le.tar.gz
+# tars += $(ms_telegraf)-$(tar_version)_static_linux_amd64.tar.gz
 
-zips += $(ms_telegraf)-$(tar_version)_windows_amd64.zip
-zips += $(ms_telegraf)-$(tar_version)_windows_i386.zip
+# zips += $(ms_telegraf)-$(tar_version)_windows_amd64.zip
+# zips += $(ms_telegraf)-$(tar_version)_windows_i386.zip
 
 dists := $(debs) $(rpms) $(tars) $(zips)
 
@@ -397,6 +393,7 @@ upload-nightly:
 %.deb: export localstatedir := /var
 %.rpm: export pkg := rpm
 %.rpm: export prefix := /usr
+%.rpm: export conf_suffix := .sample
 %.rpm: export sysconfdir := /etc
 %.rpm: export localstatedir := /var
 %.tar.gz: export pkg := tar
