@@ -1,6 +1,6 @@
 #!/bin/bash
 
-MS_TELEGRAF='ms-telegraf'
+MS_TELEGRAF=ms-telegraf
 
 if ! grep "^${MS_TELEGRAF}:" /etc/group &>/dev/null; then
     groupadd -r $MS_TELEGRAF

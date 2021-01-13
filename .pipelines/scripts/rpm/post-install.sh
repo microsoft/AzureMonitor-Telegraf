@@ -1,6 +1,6 @@
 #!/bin/bash
 
-MS_TELEGRAF='ms-telegraf'
+MS_TELEGRAF=ms-telegraf
 BIN_DIR=/usr/bin
 LOG_DIR=/var/log/$MS_TELEGRAF
 SCRIPT_DIR=/usr/lib/$MS_TELEGRAF/scripts

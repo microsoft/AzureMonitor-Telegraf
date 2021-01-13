@@ -84,8 +84,7 @@ deps:
 
 .PHONY: telegraf
 telegraf:
-	go build -ldflags "$(LDFLAGS)" ./cmd/telegraf
-
+	go build -ldflags "$(LDFLAGS)" -o "$(ms_telegraf)" ./cmd/telegraf
 # Used by dockerfile builds
 .PHONY: go-install
 go-install:
@@ -194,7 +193,7 @@ install: $(buildbin)
 # directory.
 $(buildbin):
 	@mkdir -pv $(dir $@)
-	go build -o $(dir $@) -ldflags "$(LDFLAGS)" ./cmd/telegraf
+	go build -o $(dir $@)/$(ms_telegraf) -ldflags "$(LDFLAGS)" ./cmd/telegraf
 
 debs := $(ms_telegraf)-$(deb_version)_amd64.deb
 # debs += $(ms_telegraf)-$(deb_version)_arm64.deb
@@ -403,6 +402,6 @@ upload-nightly:
 %.zip: export pkg := zip
 %.zip: export prefix := /
 
-%.deb %.rpm %.tar.gz %.zip: export DESTDIR = build/$(GOOS)-$(GOARCH)$(GOARM)$(cgo)-$(pkg)/telegraf-$(version)
-%.deb %.rpm %.tar.gz %.zip: export buildbin = build/$(GOOS)-$(GOARCH)$(GOARM)$(cgo)/telegraf$(EXEEXT)
+%.deb %.rpm %.tar.gz %.zip: export DESTDIR = build/$(GOOS)-$(GOARCH)$(GOARM)$(cgo)-$(pkg)/$(ms_telegraf)-$(version)
+%.deb %.rpm %.tar.gz %.zip: export buildbin = build/$(GOOS)-$(GOARCH)$(GOARM)$(cgo)/$(ms_telegraf)$(EXEEXT)
 %.deb %.rpm %.tar.gz %.zip: export LDFLAGS = -w -s

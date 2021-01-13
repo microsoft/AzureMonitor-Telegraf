@@ -1,6 +1,6 @@
 #!/bin/bash
 
-MS_TELEGRAF='ms-telegraf'
+MS_TELEGRAF=ms-telegraf
 
 function disable_systemd {
     systemctl disable $MS_TELEGRAF
