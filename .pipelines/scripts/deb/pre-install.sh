@@ -2,12 +2,12 @@
 
 MS_TELEGRAF=ms-telegraf
 
-if ! grep "^${MS_TELEGRAF}:" /etc/group &>/dev/null; then
-    groupadd -r $MS_TELEGRAF
+if ! grep "^telegraf:" /etc/group &>/dev/null; then
+    groupadd -r telegraf
 fi
 
-if ! id $MS_TELEGRAF &>/dev/null; then
-    useradd -r -M $MS_TELEGRAF -s /bin/false -d /etc/$MS_TELEGRAF -g $MS_TELEGRAF
+if ! id telegraf &>/dev/null; then
+    useradd -r -M telegraf -s /bin/false -d /etc/$MS_TELEGRAF -g telegraf
 fi
 
 if [[ -d /etc/opt/$MS_TELEGRAF ]]; then

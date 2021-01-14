@@ -4,31 +4,34 @@ branch := $(shell git rev-parse --abbrev-ref HEAD)
 commit := $(shell git rev-parse --short=8 HEAD)
 glibc_version := 2.17
 ms_telegraf := ms-telegraf
-version := $(next_version)
 
 ifdef NIGHTLY
-	rpm_version := $(version)
+	rpm_version := nightly
 	rpm_iteration := 0
-	deb_version := $(version)
+	deb_version := nightly
 	deb_iteration := 0
-	tar_version := $(version)
+	tar_version := nightly
 else ifeq ($(tag),)
+	version := $(next_version)
 	rpm_version := $(version)
 	rpm_iteration := 0
 	deb_version := $(version)
 	deb_iteration := 0
 	tar_version := $(version)
 else ifneq ($(findstring -rc,$(tag)),)
+	version := $(word 1,$(subst -, ,$(tag)))
+	version := $(version:v%=%)
 	rc := $(word 2,$(subst -, ,$(tag)))
-	rpm_version := $(version)
+	rpm_version := $(version)-0.$(rc)
 	rpm_iteration := 0.$(subst rc,,$(rc))
-	deb_version := $(version)
+	deb_version := $(version)~$(rc)-1
 	deb_iteration := 0
-	tar_version := $(version)
+	tar_version := $(version)~$(rc)
 else
-	rpm_version := $(version)
+	version := $(tag:v%=%)
+	rpm_version := $(version)-1
 	rpm_iteration := 1
-	deb_version := $(version)
+	deb_version := $(version)-1
 	deb_iteration := 1
 	tar_version := $(version)
 endif
@@ -190,7 +193,7 @@ install: $(buildbin)
 # directory.
 $(buildbin):
 	@mkdir -pv $(dir $@)
-	go build -o $(dir $@)/$(ms_telegraf) -ldflags "$(LDFLAGS)" ./cmd/telegraf
+	go build -o $(dir $@)/$(ms_telegraf)$(EXEEXT) -ldflags "$(LDFLAGS)" ./cmd/telegraf
 
 debs := $(ms_telegraf)-$(deb_version)_amd64.deb
 debs += $(ms_telegraf)-$(deb_version)_arm64.deb
