@@ -1,0 +1,17 @@
+[Unit]
+Description=This is a Microsoft's fork of telegraf, a plugin-driven server agent for reporting metrics
+Documentation=https://github.com/influxdata/telegraf
+After=network.target
+
+[Service]
+EnvironmentFile=-/etc/default/ms-telegraf
+User=telegraf
+ExecStart=/usr/bin/ms-telegraf -config /etc/ms-telegraf/telegraf.conf -config-directory /etc/ms-telegraf/telegraf.d $TELEGRAF_OPTS
+ExecReload=/bin/kill -HUP $MAINPID
+Restart=on-failure
+RestartForceExitStatus=SIGPIPE
+KillMode=control-group
+LimitNOFILE=30000
+
+[Install]
+WantedBy=multi-user.target
