@@ -256,13 +256,13 @@ $(rpms):
 		--vendor InfluxData \
 		--url https://github.com/influxdata/telegraf \
 		--license MIT \
-		--maintainer support@influxdb.com \
+		--maintainer opframework@microsoft.com \
 		--config-files /etc/$(ms_telegraf)/telegraf.conf.sample \
 		--config-files /etc/logrotate.d/$(ms_telegraf) \
 		--after-install scripts/rpm/post-install.sh \
 		--before-install scripts/rpm/pre-install.sh \
 		--after-remove scripts/rpm/post-remove.sh \
-		--description "Plugin-driven server agent for reporting metrics into InfluxDB." \
+		--description "Plugin-driven server agent for reporting metrics into Azure Monitor Insights." \
 		--depends coreutils \
 		--depends shadow-utils \
 		--rpm-posttrans scripts/rpm/post-install.sh \
@@ -295,14 +295,14 @@ $(debs):
 		--vendor InfluxData \
 		--url https://github.com/influxdata/telegraf \
 		--license MIT \
-		--maintainer support@influxdb.com \
+		--maintainer opframework@microsoft.com \
 		--config-files /etc/$(ms_telegraf)/telegraf.conf.sample \
 		--config-files /etc/logrotate.d/$(ms_telegraf) \
 		--after-install scripts/deb/post-install.sh \
 		--before-install scripts/deb/pre-install.sh \
 		--after-remove scripts/deb/post-remove.sh \
 		--before-remove scripts/deb/pre-remove.sh \
-		--description "Plugin-driven server agent for reporting metrics into InfluxDB." \
+		--description "Plugin-driven server agent for reporting metrics into Azure Monitor Insights." \
 		--name $(ms_telegraf) \
 		--version $(version) \
 		--iteration $(deb_iteration) \
