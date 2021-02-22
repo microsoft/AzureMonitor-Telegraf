@@ -1,5 +1,5 @@
 [Unit]
-Description=This is a Microsoft's fork of telegraf, a plugin-driven server agent for reporting metrics
+Description=This is a Microsoft's fork of telegraf, a plugin-driven server agent for reporting metrics into Azure Monitor Insights
 Documentation=https://github.com/influxdata/telegraf
 After=network.target
 
