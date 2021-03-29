@@ -5,7 +5,7 @@ environment:
     version: '18.04'
   runtime:
     provider: 'appcontainer'
-    image: 'cdpxlinux.azurecr.io/user/azure-monitor/wli/telegraf:1.1'
+    image: 'cdpxlinux.azurecr.io/user/azure-monitor/wli/telegraf:1.2'
 
 static_analysis_options:
   elfskim_options:
