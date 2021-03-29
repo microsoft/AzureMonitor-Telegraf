@@ -133,6 +133,10 @@ group, usually `telegraf`, is allowed to use ICMP echo sockets:
 
 ```sh
 $ sysctl -w net.ipv4.ping_group_range="GROUP_ID_LOW   GROUP_ID_HIGH"
+On Linux the default behaviour is to restrict creation of ping sockets for everybody. Execute the below command to enable creation of ping sockets for all possible user groups. The integers provided to ping_group_range defines the range of user groups that are permited to create ping sockets, were 2147483647 (the max of a signed int 2^31) is the max group identifier (GID).
+
+```sh
+$ sudo sysctl -w net.ipv4.ping_group_range="0 2147483647"
 ```
 
 Reference [`man 7 icmp`][man 7 icmp] for more information about ICMP echo

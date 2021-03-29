@@ -54,3 +54,4 @@ curl -i -XPOST 'http://localhost:8186/api/v2/write' --data-binary 'cpu_load_shor
 ```
 
 [influxdb_http_api]: https://v2.docs.influxdata.com/v2.0/api/
+[influxdb_http_api]: https://docs.influxdata.com/influxdb/latest/api/
