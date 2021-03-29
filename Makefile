@@ -75,6 +75,7 @@ help:
 	@echo '  test       - run short unit tests'
 	@echo '  fmt        - format source files'
 	@echo '  tidy       - tidy go modules'
+	@echo '  lint       - run linter'
 	@echo '  check-deps - check docs/LICENSE_OF_DEPENDENCIES.md'
 	@echo '  clean      - delete build artifacts'
 	@echo ''
@@ -83,7 +84,7 @@ help:
 
 .PHONY: deps
 deps:
-	go mod download
+	go mod download -x
 
 .PHONY: telegraf
 telegraf:
@@ -97,6 +98,10 @@ go-install:
 .PHONY: test
 test:
 	go test -short $(race_detector) ./...
+
+.PHONY: test-integration
+test-integration:
+	go test -run Integration $(race_detector) ./...
 
 .PHONY: fmt
 fmt:
@@ -126,6 +131,15 @@ vet:
 		exit 1; \
 	fi
 
+.PHONY: lint
+lint:
+ifeq (, $(shell which golangci-lint))
+	$(info golangci-lint can't be found, please install it: https://golangci-lint.run/usage/install/)
+	exit 1
+endif
+
+	golangci-lint run --timeout 5m0s --issues-exit-code 0
+
 .PHONY: tidy
 tidy:
 	go mod verify
@@ -137,7 +151,6 @@ tidy:
 
 .PHONY: check
 check: fmtcheck vet
-	@$(MAKE) --no-print-directory tidy
 
 .PHONY: test-all
 test-all: fmtcheck vet
@@ -167,13 +180,13 @@ plugin-%:
 
 .PHONY: ci-1.15
 ci-1.15:
-	docker build -t quay.io/influxdb/telegraf-ci:1.15.5 - < scripts/ci-1.15.docker
-	docker push quay.io/influxdb/telegraf-ci:1.15.5
+	docker build -t quay.io/influxdb/telegraf-ci:1.15.8 - < scripts/ci-1.15.docker
+	docker push quay.io/influxdb/telegraf-ci:1.15.8
 
-.PHONY: ci-1.14
-ci-1.14:
-	docker build -t quay.io/influxdb/telegraf-ci:1.14.9 - < scripts/ci-1.14.docker
-	docker push quay.io/influxdb/telegraf-ci:1.14.9
+.PHONY: ci-1.16
+ci-1.16:
+	docker build -t quay.io/influxdb/telegraf-ci:1.16.2 - < scripts/ci-1.16.docker
+	docker push quay.io/influxdb/telegraf-ci:1.16.2
 
 .PHONY: install
 install: $(buildbin)

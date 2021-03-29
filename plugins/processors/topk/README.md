@@ -11,6 +11,19 @@ This processor goes through these steps when processing a batch of metrics:
 The plugin makes sure not to duplicate metrics
 
 Note that depending on the amount of metrics on each computed bucket, more than `K` metrics may be returned
+The TopK processor plugin is a filter designed to get the top series over a period of time. It can be tweaked to calculate the top metrics via different aggregation functions.
+
+This processor goes through these steps when processing a batch of metrics:
+
+  1. Groups measurements in buckets based on their tags and name
+  2. Every N seconds, for each bucket, for each selected field: aggregate all the measurements using a given aggregation function (min, sum, mean, etc) and the field.
+  3. For each computed aggregation: order the buckets by the aggregation, then returns all measurements in the top `K` buckets
+
+Notes:
+  * The deduplicates metrics
+  * The name of the measurement is always used when grouping it
+  * Depending on the amount of metrics on each  bucket, more than `K` series may be returned
+  * If a measurement does not have one of the selected fields, it is dropped from the aggregation
 
 ### Configuration:
 
@@ -48,6 +61,31 @@ Note that depending on the amount of metrics on each computed bucket, more than 
   ## will be added to each and every metric for each string present in this
   ## setting. This field will contain the ranking of the group that
   ## the metric belonged to when aggregated over that field.
+  ## How many top buckets to return
+  # k = 10
+
+  ## Based on which tags should the buckets be computed. Globs can be specified.
+  ## If set to an empty list tags are not considered when creating the buckets
+  # group_by = ['*']
+
+  ## Over which fields is the aggregation done
+  # fields = ["value"]
+
+  ## What aggregation function to use. Options: sum, mean, min, max
+  # aggregation = "mean"
+
+  ## Instead of the top k buckets, return the bottom k buckets
+  # bottomk = false
+
+  ## This setting provides a way to know wich metrics where group together.
+  ## Add a tag (which name will be the value of this setting) to each metric.
+  ## The value will be the tags used to pick its bucket.
+  # add_groupby_tag = ""
+
+  ## This setting provides a way to know the position of each metric's bucket in the top k
+  ## If the list is non empty, a field will be added to each and every metric
+  ## for each string present in this setting. This field will contain the ranking
+  ## of the bucket that the metric belonged to when aggregated over that field.
   ## The name of the field will be set to the name of the aggregation field,
   ## suffixed with the string '_topk_rank'
   # add_rank_fields = []
@@ -59,6 +97,10 @@ Note that depending on the amount of metrics on each computed bucket, more than 
   ## each field present in this setting. This field will contain
   ## the computed aggregation for the group that the metric belonged to when
   ## aggregated over that field.
+  ## when aggregating metrics. If the list is non empty, then a field will be
+  ## added to each every metric for each field present in this setting.
+  ## This field will contain the computed aggregation for the bucket that the
+  ## metric belonged to when aggregated over that field.
   ## The name of the field will be set to the name of the aggregation field,
   ## suffixed with the string '_topk_aggregate'
   # add_aggregate_fields = []

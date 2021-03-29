@@ -44,6 +44,14 @@ This plugin does not require a plugin on jenkins and it makes use of Jenkins API
 
   ## Nodes to exclude from gathering
   # node_exclude = [ "node1", "node2" ]
+  ## Jobs to include or exclude from gathering
+  ## When using both lists, job_exclude has priority.
+  ## Wildcards are supported: [ "jobA/*", "jobB/subjob1/*"]
+  # job_include = [ "*" ]
+  # job_exclude = [ ]
+
+  ## Nodes to exclude from gathering
+  # node_exclude = [ ]
 
   ## Worker pool for jenkins plugin only
   ## Empty this field will use default value 5
