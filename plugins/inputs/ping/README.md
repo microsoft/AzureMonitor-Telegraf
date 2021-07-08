@@ -70,6 +70,10 @@ native Go by the Telegraf process, eliminating the need to execute the system
 
   ## Use only IPv6 addresses when resolving a hostname.
   # ipv6 = false
+
+  ## Number of data bytes to be sent. Corresponds to the "-s"
+  ## option of the ping command. This only works with the native method.
+  # size = 56
 ```
 
 #### File Limit
@@ -103,6 +107,7 @@ $ systemctl edit telegraf
 
 When using `method = "native"`, Telegraf will attempt to use privileged raw
 ICMP sockets.  On most systems, doing so requires `CAP_NET_RAW` capabilities.
+ICMP sockets.  On most systems, doing so requires `CAP_NET_RAW` capabilities or for Telegraf to be run as root.
 
 With systemd:
 ```sh
@@ -143,6 +148,9 @@ Reference [`man 7 icmp`][man 7 icmp] for more information about ICMP echo
 sockets and the `ping_group_range` setting.
 
 [man 7 icmp]: http://man7.org/linux/man-pages/man7/icmp.7.html
+#### Other OS Permissions
+
+When using `method = "native"`, you will need permissions similar to the executable ping program for your OS. 
 
 ### Metrics
 
