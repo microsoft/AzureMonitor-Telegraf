@@ -63,6 +63,7 @@ written as a dimension on each Azure Monitor metric.
     - North Europe (northeurope)
     - West Europe (westeurope)
     - Southeast Asia (southeastasia)
+   the format `https://<region>.monitoring.azure.com`.
 
 [resource provider]: https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-manager-supported-services
 [enable msi]: https://docs.microsoft.com/en-us/azure/active-directory/managed-service-identity/qs-configure-portal-windows-vm

@@ -21,6 +21,7 @@ This plugin writes telegraf metrics to [Azure Application Insights](https://azur
   ##
   ## For list of allowed context tag keys see:
   ## https://github.com/Microsoft/ApplicationInsights-Go/blob/master/appinsights/contracts/contexttagkeys.go
+  ## https://github.com/microsoft/ApplicationInsights-Go/blob/master/appinsights/contracts/contexttagkeys.go
   # [outputs.application_insights.context_tag_sources]
   #   "ai.cloud.role" = "kubernetes_container_name"
   #   "ai.cloud.roleInstance" = "kubernetes_pod_name"

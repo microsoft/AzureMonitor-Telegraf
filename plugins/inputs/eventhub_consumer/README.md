@@ -30,6 +30,17 @@ The main focus for development of this plugin is Azure IoT hub:
 
   ## Uncommenting the option below will create an Event Hub client based solely on the connection string.
   ## This can either be the associated environment variable or hard coded directly.
+  ## 3) Expected Environment Variables:
+  ##    - "EVENTHUB_NAMESPACE"
+  ##    - "EVENTHUB_NAME"
+  ##    - "AZURE_TENANT_ID"
+  ##    - "AZURE_CLIENT_ID"
+  ##    - "AZURE_CLIENT_SECRET"
+
+  ## Uncommenting the option below will create an Event Hub client based solely on the connection string.
+  ## This can either be the associated environment variable or hard coded directly.
+  ## If this option is uncommented, environment variables will be ignored.
+  ## Connection string should contain EventHubName (EntityPath)
   # connection_string = ""
 
   ## Set persistence directory to a valid folder to use a file persister instead of an in-memory persister
