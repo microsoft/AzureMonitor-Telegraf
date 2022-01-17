@@ -31,7 +31,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/config v1.1.5
 	github.com/aws/aws-sdk-go-v2/feature/ec2/imds v1.0.6
 	github.com/aws/aws-sdk-go-v2/service/ec2 v1.1.0
-	github.com/aws/smithy-go v1.3.1
+	github.com/aws/smithy-go v1.10.0
 	github.com/benbjohnson/clock v1.0.3
 	github.com/bitly/go-hostpool v0.1.0 // indirect
 	github.com/bmatcuk/doublestar/v3 v3.0.0
